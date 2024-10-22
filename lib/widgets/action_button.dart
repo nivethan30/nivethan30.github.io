@@ -33,6 +33,7 @@ class _ActionButtonState extends State<ActionButton> {
             });
           },
           child: InkWell(
+            borderRadius: BorderRadius.circular(10),
             onTap: widget.onPressed,
             child: Container(
               padding: const EdgeInsets.all(10),

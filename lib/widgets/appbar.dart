@@ -64,7 +64,6 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       ActionButton(text: 'Experience', onPressed: () => onPressed(2)),
       ActionButton(text: 'Works', onPressed: () => onPressed(3)),
       ActionButton(text: 'Contact', onPressed: () => onPressed(4)),
-      ActionButton(text: 'Resume', onPressed: () {}),
     ];
   }
 }

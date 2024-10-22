@@ -34,6 +34,7 @@ class WorkPage extends StatelessWidget {
               title: project.title,
               content: project.content,
               languages: getSting(project.languageUsed),
+              imageUrl: project.imageUrl,
               githubUrl: project.githubUrl),
       if (Responsive.isMobile(context))
         for (ProjectModel project in projects.reversed)
@@ -41,6 +42,7 @@ class WorkPage extends StatelessWidget {
               title: project.title,
               content: project.content,
               languages: getSting(project.languageUsed),
+              imageUrl: project.imageUrl,
               githubUrl: project.githubUrl)
     ]);
   }
@@ -50,6 +52,7 @@ Widget mobileViewContent(
     {required String title,
     required String content,
     required String languages,
+    required String imageUrl,
     required String githubUrl}) {
   return Container(
     margin: const EdgeInsets.symmetric(vertical: 10),
@@ -63,8 +66,8 @@ Widget mobileViewContent(
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 10),
           height: 200,
-          width: 150,
-          child: const Placeholder(),
+          width: 300,
+          child: Image.network(imageUrl),
         ),
         const SizedBox(
           height: 20,
@@ -100,17 +103,20 @@ Widget desktopViewContent(
     {required String title,
     required String content,
     required String languages,
+    required String imageUrl,
     required String githubUrl}) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 10),
+  return Container(
+    color: Colors.blue.shade900.withOpacity(0.1),
+    margin: const EdgeInsets.all(10),
+    padding: const EdgeInsets.all(10),
     child: Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Container(
           margin: const EdgeInsets.symmetric(horizontal: 10),
           height: 200,
-          width: 150,
-          child: const Placeholder(),
+          width: 300,
+          child: Image.network(imageUrl),
         ),
         Expanded(
           child: Column(
@@ -125,13 +131,16 @@ Widget desktopViewContent(
               const SizedBox(
                 height: 10,
               ),
-              InkWell(
-                  onTap: () {
-                    launchURL(githubUrl);
-                  },
-                  child: const FaIcon(FontAwesomeIcons.github))
             ],
           ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: InkWell(
+              onTap: () {
+                launchURL(githubUrl);
+              },
+              child: const FaIcon(FontAwesomeIcons.github)),
         )
       ],
     ),
@@ -144,15 +153,15 @@ List<ProjectModel> projects = [
       content:
           'A simple task application in Flutter UI With Sqflite for data persistence and Provider for the State Management and made theme configurations for both dark and light modes',
       languageUsed: ['Flutter', 'Dart', 'Flutter UI'],
-      imageUrl: "",
+      imageUrl: "https://i.ibb.co/KmjR42n/todo.png",
       githubUrl:
           "https://github.com/nivethan30/Flutter-Todo-Application-Sqflite-Provider"),
   ProjectModel(
       title: 'Notes Application Using Sqflite & Provider',
       content:
-          'A simple Note taking application in Flutter UI With Sqflite for data persistence and Provider for the State Management and made theme configurations for both dark and light modes',
+          'A simple Note taking application in Flutter UI With Sqflite for data persistence and Provider for the State Management.',
       languageUsed: ['Flutter', 'Dart', 'Flutter UI'],
-      imageUrl: "",
+      imageUrl: "https://i.ibb.co/X4MFVNL/Notes.png",
       githubUrl:
           "https://github.com/nivethan30/Flutter-Notes-App-Sqflite-Provider"),
   ProjectModel(
@@ -183,6 +192,6 @@ List<ProjectModel> projects = [
       content:
           "A Personal Portfolio using Flutter UI with Responsive for Web and Mobile and even for windows, linux and macos",
       languageUsed: ["Flutter", "Dart", "Flutter UI"],
-      imageUrl: "",
+      imageUrl: "https://i.ibb.co/QbP5DS1/portfolio.png",
       githubUrl: "")
 ];

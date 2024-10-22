@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import '../utils/constants.dart';
 import '../widgets/action_button.dart';
 
 class HomePage extends StatelessWidget {
@@ -48,8 +49,11 @@ class HomePage extends StatelessWidget {
         ),
         const SizedBox(height: 40),
         ActionButton(
-          text: 'Get In Touch',
-          onPressed: onContactPressed,
+          text: 'Download My CV ',
+          onPressed: () {
+            launchURL(
+                "https://drive.google.com/file/d/1HiOkvUNqYRYaQAD9CDGL1PuXw7nAy0Kv/view?usp=sharing");
+          },
           isBorder: true,
         )
       ],
