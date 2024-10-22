@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../data/project_details.dart';
 import '../utils/constants.dart';
 import '../models/projects.dart';
 import '../utils/responsive.dart';
@@ -8,6 +9,16 @@ class WorkPage extends StatelessWidget {
   const WorkPage({super.key});
 
   @override
+
+  /// Builds the UI for the WorkPage, displaying a list of projects.
+  ///
+  /// The widget shows a header with the text "Some things I've Built"
+  /// followed by a horizontal divider. Below the header, it displays
+  /// a list of projects either in a desktop or mobile view, depending
+  /// on the screen size. The desktop view shows detailed information
+  /// about each project, including the title, content, languages used,
+  /// image, application URL, and GitHub URL. The mobile view provides
+  /// a compact layout with the same information.
   Widget build(BuildContext context) {
     return Column(children: [
       const Row(
@@ -35,6 +46,7 @@ class WorkPage extends StatelessWidget {
               content: project.content,
               languages: getSting(project.languageUsed),
               imageUrl: project.imageUrl,
+              applicationUrl: project.applicationUrl ?? "",
               githubUrl: project.githubUrl),
       if (Responsive.isMobile(context))
         for (ProjectModel project in projects.reversed)
@@ -42,17 +54,25 @@ class WorkPage extends StatelessWidget {
               title: project.title,
               content: project.content,
               languages: getSting(project.languageUsed),
+              applicationUrl: project.applicationUrl ?? "",
               imageUrl: project.imageUrl,
               githubUrl: project.githubUrl)
     ]);
   }
 }
 
+/// Builds the mobile view for the WorkPage, displaying a single project
+/// in a column with an image at the top and a column of text below it.
+/// The image is a link to the project's image URL. The column of text
+/// contains the project's title, languages used, content, and a link to
+/// the project's GitHub URL. If the project has an application URL,
+/// it also displays a link to the application URL.
 Widget mobileViewContent(
     {required String title,
     required String content,
     required String languages,
     required String imageUrl,
+    required String applicationUrl,
     required String githubUrl}) {
   return Container(
     margin: const EdgeInsets.symmetric(vertical: 10),
@@ -63,11 +83,21 @@ Widget mobileViewContent(
     ),
     child: Column(
       children: [
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10),
-          height: 200,
-          width: 300,
-          child: Image.network(imageUrl),
+        InkWell(
+          onTap: () {
+            launchURL(imageUrl);
+          },
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 10),
+            height: 200,
+            width: 300,
+            child: Image.network(
+              imageUrl,
+              errorBuilder: (context, error, stackTrace) => const Center(
+                child: Text("Failed to Load image"),
+              ),
+            ),
+          ),
         ),
         const SizedBox(
           height: 20,
@@ -84,14 +114,23 @@ Widget mobileViewContent(
             const SizedBox(
               height: 10,
             ),
-            Align(
-              alignment: Alignment.center,
-              child: InkWell(
-                  onTap: () {
-                    launchURL(githubUrl);
-                  },
-                  child: const FaIcon(FontAwesomeIcons.github)),
-            )
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                InkWell(
+                    onTap: () {
+                      launchURL(githubUrl);
+                    },
+                    child: const FaIcon(FontAwesomeIcons.github)),
+                if (applicationUrl.isNotEmpty) const SizedBox(width: 20),
+                if (applicationUrl.isNotEmpty)
+                  InkWell(
+                      onTap: () {
+                        launchURL(applicationUrl);
+                      },
+                      child: const FaIcon(FontAwesomeIcons.upRightFromSquare)),
+              ],
+            ),
           ],
         ),
       ],
@@ -99,12 +138,26 @@ Widget mobileViewContent(
   );
 }
 
+/// A widget for displaying the content of a project on the desktop
+///
+/// This widget takes the title, content, languages, image URL, GitHub URL, and
+/// application URL of a project as parameters and displays them in a row.
+/// The image is displayed on the left, and the text content is displayed on
+/// the right. The GitHub and application URLs are displayed as icons on the
+/// right side of the text content.
+///
+/// The [imageUrl] parameter is required, but the [applicationUrl] parameter
+/// is optional. If [applicationUrl] is empty, the application URL icon is
+/// not displayed.
+///
+/// This widget is intended to be used in the [DesktopView] widget.
 Widget desktopViewContent(
     {required String title,
     required String content,
     required String languages,
     required String imageUrl,
-    required String githubUrl}) {
+    required String githubUrl,
+    required String applicationUrl}) {
   return Container(
     color: Colors.blue.shade900.withOpacity(0.1),
     margin: const EdgeInsets.all(10),
@@ -112,11 +165,21 @@ Widget desktopViewContent(
     child: Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10),
-          height: 200,
-          width: 300,
-          child: Image.network(imageUrl),
+        InkWell(
+          onTap: () {
+            launchURL(imageUrl);
+          },
+          child: Container(
+            margin: const EdgeInsets.symmetric(horizontal: 10),
+            height: 200,
+            width: 300,
+            child: Image.network(
+              imageUrl,
+              errorBuilder: (context, error, stackTrace) => const Center(
+                child: Text("Failed to Load image"),
+              ),
+            ),
+          ),
         ),
         Expanded(
           child: Column(
@@ -135,63 +198,24 @@ Widget desktopViewContent(
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: InkWell(
-              onTap: () {
-                launchURL(githubUrl);
-              },
-              child: const FaIcon(FontAwesomeIcons.github)),
-        )
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                InkWell(
+                    onTap: () {
+                      launchURL(githubUrl);
+                    },
+                    child: const FaIcon(FontAwesomeIcons.github)),
+                if (applicationUrl.isNotEmpty) const SizedBox(width: 10),
+                if (applicationUrl.isNotEmpty)
+                  InkWell(
+                      onTap: () {
+                        launchURL(applicationUrl);
+                      },
+                      child: const FaIcon(FontAwesomeIcons.upRightFromSquare)),
+              ],
+            ))
       ],
     ),
   );
 }
-
-List<ProjectModel> projects = [
-  ProjectModel(
-      title: 'Todo Application Using Sqflite & Provider',
-      content:
-          'A simple task application in Flutter UI With Sqflite for data persistence and Provider for the State Management and made theme configurations for both dark and light modes',
-      languageUsed: ['Flutter', 'Dart', 'Flutter UI'],
-      imageUrl: "https://i.ibb.co/KmjR42n/todo.png",
-      githubUrl:
-          "https://github.com/nivethan30/Flutter-Todo-Application-Sqflite-Provider"),
-  ProjectModel(
-      title: 'Notes Application Using Sqflite & Provider',
-      content:
-          'A simple Note taking application in Flutter UI With Sqflite for data persistence and Provider for the State Management.',
-      languageUsed: ['Flutter', 'Dart', 'Flutter UI'],
-      imageUrl: "https://i.ibb.co/X4MFVNL/Notes.png",
-      githubUrl:
-          "https://github.com/nivethan30/Flutter-Notes-App-Sqflite-Provider"),
-  ProjectModel(
-      title: 'TMDB Movie Application Using Flutter Bloc',
-      content:
-          'A TMDB Movie Application is Developed in Flutter and Fetch data from the REST Api method using Dio Package and Managed the State using Flutter Bloc',
-      languageUsed: ['Flutter', 'Dart', 'Flutter UI'],
-      imageUrl: "",
-      githubUrl:
-          "https://github.com/nivethan30/TMDB_Movie_Application_Flutter_Bloc"),
-  ProjectModel(
-      title: 'Weather Application Using Riverpod & OpenWeatherMap',
-      content:
-          'A Weather Application using OpenweatherMap Package has been built and the state is managed using flutter riverpod package and for location accuracy geolocator is used and made theme configurations for both dark and light modes.',
-      languageUsed: ['Flutter', 'Dart', 'Flutter UI'],
-      imageUrl: "",
-      githubUrl:
-          "https://github.com/nivethan30/Weather-Application-Flutter-Riverpod"),
-  ProjectModel(
-      title: 'Firebase Authentication Application using Flutter',
-      content:
-          "An Responsive Application for web and mobile using flutter and firebase authentication includes the login methods, sign up and sign in with google then connect with the firestore database to store the userdata and using firebase storage to update the profile picture.",
-      languageUsed: ['Flutter', 'Dart', 'Flutter UI'],
-      imageUrl: "",
-      githubUrl: ""),
-  ProjectModel(
-      title: "Personal Portfolio using Flutter UI",
-      content:
-          "A Personal Portfolio using Flutter UI with Responsive for Web and Mobile and even for windows, linux and macos",
-      languageUsed: ["Flutter", "Dart", "Flutter UI"],
-      imageUrl: "https://i.ibb.co/QbP5DS1/portfolio.png",
-      githubUrl: "")
-];

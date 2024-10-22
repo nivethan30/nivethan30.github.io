@@ -9,6 +9,25 @@ class AboutPage extends StatelessWidget {
   const AboutPage({super.key});
 
   @override
+  /// Builds the about page widget with a photo, a header with the text
+  /// "About Me", a divider, a text that describes the person, a list of
+  /// skills and a photo on the right side if the device is a desktop.
+  ///
+  /// The photo is a CircleAvatar with a elevation of 8.0 and a radius of
+  /// 100. The photo is centered if the device is a mobile device.
+  ///
+  /// The header is a Row with a Text with the text "About Me" and a
+  /// Divider.
+  ///
+  /// The text is an AutoSizeText that displays a description of the
+  /// person. The text is centered if the device is a mobile device.
+  ///
+  /// The list of skills is a Wrap with a list of skillCard widgets. Each
+  /// skillCard widget displays a title and a SvgPicture of the skill.
+  ///
+  /// The photo on the right side is an imageStack widget that displays a
+  /// stack of images. The images are the same as the ones in the
+  /// skillCard widgets.
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -90,6 +109,10 @@ class AboutPage extends StatelessWidget {
     );
   }
 
+  /// Returns a Column widget containing an SvgPicture and a Text widget.
+  /// The SvgPicture is used to display a logo, and the Text widget is used to
+  /// display the title of the skill. The width and height of the SvgPicture are
+  /// set to 75.
   Widget skillCard({required String title, required String pictureData}) {
     return Column(
       children: [
@@ -104,6 +127,12 @@ class AboutPage extends StatelessWidget {
   }
 }
 
+  /// Returns a Stack widget containing two Container widgets. The first
+  /// container has a height and width of 400 and a teal border with a width
+  /// of 4. The second container has a height and width of 400, a margin of 20
+  /// on all sides, and a decoration of a BoxFit.cover of the photo image.
+  /// The stack is aligned to the bottom end, so the second container is
+  /// positioned at the bottom right of the first container.
 Widget imageStack() {
   return Stack(
     alignment: AlignmentDirectional.bottomEnd,

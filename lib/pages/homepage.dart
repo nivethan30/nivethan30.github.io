@@ -8,6 +8,11 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key, required this.onContactPressed});
 
   @override
+  /// Builds the home page widget, which displays a brief introduction to
+  /// myself, along with a button to download my CV. The text is styled
+  /// using [AutoSizeText] widgets to ensure that the text is displayed
+  /// in a readable size on all devices. The button is an [ActionButton]
+  /// that launches a URL when pressed.
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

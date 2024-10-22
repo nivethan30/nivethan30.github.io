@@ -8,6 +8,13 @@ class ContactPage extends StatelessWidget {
   const ContactPage({super.key});
 
   @override
+  /// Builds the contact page widget, which displays a title, a section
+  /// with text and a button to get in touch, and a section with social
+  /// media buttons at the bottom. The text section is only displayed on
+  /// non-desktop devices. The social media buttons are displayed in a
+  /// row in the center of the page. The button is an [ActionButton]
+  /// that launches a URL when pressed. The URL is a link to a
+  /// WhatsApp chat.
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,

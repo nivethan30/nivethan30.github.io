@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import '../data/experience_details.dart';
 import '../models/work_experience.dart';
-import '../utils/constants.dart';
 import '../utils/responsive.dart';
 
 class ExperiencePage extends StatelessWidget {
   const ExperiencePage({super.key});
 
   @override
+  /// Builds the UI for the ExperiencePage, displaying a list of work experiences.
+  /// 
+  /// The widget shows a header with the text "Work Experience" followed by a
+  /// horizontal divider. Below the header, it displays a list of work experiences
+  /// either in a desktop or mobile view, depending on the screen size. The desktop
+  /// view shows the duration, company name, title, and content of the work experience
+  /// in a row. The mobile view provides a compact layout with the same information.
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,21 +54,16 @@ class ExperiencePage extends StatelessWidget {
   }
 }
 
-List<WorkExperienceModel> workExperienceList = [
-  WorkExperienceModel(
-    companyName: WorkExperience.flutterInternCompany,
-    title: WorkExperience.flutterInternTitle,
-    content: WorkExperience.flutterInternContent,
-    duration: WorkExperience.flutterInternDuration,
-  ),
-  WorkExperienceModel(
-    companyName: WorkExperience.flutterDeveloperCompany,
-    title: WorkExperience.flutterDeveloperTitle,
-    content: WorkExperience.flutterDeveloperContent,
-    duration: WorkExperience.flutterDeveloperDuration,
-  ),
-];
-
+/// Widget for displaying work experience details in a mobile view.
+/// 
+/// Displays the duration, company name, title, and content of the work experience in a styled container.
+/// The duration is shown with a work icon, company name, title, and content are displayed in a column.
+/// 
+/// Parameters:
+/// - [duration]: The duration of the work experience.
+/// - [companyName]: The name of the company.
+/// - [title]: The title of the work experience.
+/// - [content]: The content describing the work experience.
 Widget mobileViewExperience(
     {required String duration,
     required String companyName,
@@ -107,6 +109,17 @@ Widget mobileViewExperience(
   );
 }
 
+/// Builds a row widget for displaying work experience details.
+/// 
+/// The row includes the duration, company name, title, and content of the work experience.
+/// It consists of a row with a circle avatar icon representing work, followed by the company name,
+/// title, and content displayed in a column.
+/// 
+/// Parameters:
+/// - [duration]: The duration of the work experience.
+/// - [companyName]: The name of the company.
+/// - [title]: The title of the work experience.
+/// - [content]: The content describing the work experience.
 Padding workExperienceRow(
     {required String duration,
     required String companyName,
