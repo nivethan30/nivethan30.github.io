@@ -18,11 +18,19 @@ List<ProjectModel> projects = [
       githubUrl:
           "https://github.com/nivethan30/Flutter-Notes-App-Sqflite-Provider"),
   ProjectModel(
+      title: 'Calculator Application Using Flutter',
+      content:
+          'A Simple Calculator Application in Flutter UI to perform logical mathematical operations like Addition, Subtraction, Multiplication, Division etc.',
+      languageUsed: ['Flutter', 'Dart', 'Flutter UI'],
+      imageUrl: "https://i.ibb.co/Byy3jr0/Calculator.png",
+      githubUrl:
+          "https://github.com/nivethan30/Calculator_App_Flutter_Math_Expressions"),
+  ProjectModel(
       title: 'TMDB Movie Application Using Flutter Bloc',
       content:
           'A TMDB Movie Application is Developed in Flutter and Fetch data from the REST Api method using Dio Package and Managed the State using Flutter Bloc',
       languageUsed: ['Flutter', 'Dart', 'Flutter UI'],
-      imageUrl: "",
+      imageUrl: "https://i.ibb.co/grGBnLd/Tmdb.png",
       githubUrl:
           "https://github.com/nivethan30/TMDB_Movie_Application_Flutter_Bloc"),
   ProjectModel(
@@ -33,6 +41,14 @@ List<ProjectModel> projects = [
       imageUrl: "https://i.ibb.co/80Px2hD/Weather.png",
       githubUrl:
           "https://github.com/nivethan30/Weather-Application-Flutter-Riverpod"),
+  ProjectModel(
+      title: 'Todo Application Using Firebase CloudFirestore in Flutter',
+      content:
+          "A simple task application in Flutter UI With Firebase CloudFirestore for data persistence  and made theme configurations for both dark and light modes",
+      languageUsed: ['Flutter', 'Dart', 'Flutter UI'],
+      imageUrl: "https://i.ibb.co/KmjR42n/todo.png",
+      githubUrl:
+          "https://github.com/nivethan30/Flutter-Firebase-Cloud-Firestore-Todo-App"),
   ProjectModel(
       title: 'Firebase Authentication Application using Flutter',
       content:
