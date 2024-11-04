@@ -1,8 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../utils/page_reloader.dart';
 import '../utils/responsive.dart';
-import '../pages/splash_screen.dart';
 import 'action_button.dart';
 
 class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
@@ -12,17 +12,13 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       {super.key, required this.onPressed, required this.openDrawer});
 
   @override
-  /// The custom app bar for the application, which appears on all pages.
+  /// Builds a custom app bar for the application.
   ///
-  /// The app bar displays a clickable logo on the left, and a menu button
-  /// on the right if the device is small enough to be considered a mobile
-  /// device. If the device is large enough to be considered a computer, the
-  /// app bar displays a set of navigation buttons instead of a menu button.
-  ///
-  /// The app bar is transparent and has no elevation, so it blends in with the
-  /// background of the page. The text and icons on the app bar are colored
-  /// white, and the logo is colored teal. When the logo is clicked, the app
-  /// navigates back to the splash screen.
+  /// The app bar is transparent with white foreground components and no elevation.
+  /// It contains a clickable title that triggers a page reload when tapped.
+  /// The title includes a teal-colored terminal icon and an animated text that displays "Portfolio."
+  /// On mobile devices, a drawer icon is displayed in the actions section to open the drawer.
+  /// On larger screens, navigation buttons are shown instead of the drawer icon.
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.transparent,
@@ -30,8 +26,7 @@ class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       title: InkWell(
         onTap: () {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const SplashScreen()));
+          reloadPage();
         },
         child: Row(
           mainAxisSize: MainAxisSize.min,

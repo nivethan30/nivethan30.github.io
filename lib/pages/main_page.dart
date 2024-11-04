@@ -61,15 +61,16 @@ class _MainPageState extends State<MainPage> {
   }
 
   @override
-/// Builds the main page scaffold with app bar, end drawer, and body content.
-/// 
-/// The app bar contains a [AppBarWidget] with a handler for the onPressed event
-/// that scrolls to the section corresponding to the selected value. It also 
-/// includes a button to open the end drawer.
-/// 
-/// The end drawer displays the navigation links for different sections of the page.
-/// 
-/// The body displays the main content of the page.
+
+  /// Builds the main page scaffold with app bar, end drawer, and body content.
+  ///
+  /// The app bar contains a [AppBarWidget] with a handler for the onPressed event
+  /// that scrolls to the section corresponding to the selected value. It also
+  /// includes a button to open the end drawer.
+  ///
+  /// The end drawer displays the navigation links for different sections of the page.
+  ///
+  /// The body displays the main content of the page.
   Widget build(BuildContext context) {
     return Scaffold(
         key: _mainScaffoldKey,
@@ -85,9 +86,9 @@ class _MainPageState extends State<MainPage> {
         body: _bodyContent());
   }
 
-/// Builds the main content of the page, including sections for the home page, about page, experience page, work page, and contact page.
-/// The content is displayed within a Row widget, with the main sections wrapped in Containers and displayed within a SingleChildScrollView.
-/// The function also handles responsive design, such as displaying a social widget on desktop screens and rotating email contact information.
+  /// Builds the main content of the page, including sections for the home page, about page, experience page, work page, and contact page.
+  /// The content is displayed within a Row widget, with the main sections wrapped in Containers and displayed within a SingleChildScrollView.
+  /// The function also handles responsive design, such as displaying a social widget on desktop screens and rotating email contact information.
   Widget _bodyContent() {
     double scHeight = MediaQuery.sizeOf(context).height;
     return Row(
@@ -169,13 +170,13 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-/// Builds and returns a Drawer widget for the navigation menu.
-/// 
-/// The Drawer widget has a background color of 0xFF0a192f and a width of 300.
-/// It contains a ListView with a list of ListTile widgets, each representing a navigation item.
-/// Each ListTile has an IconButton as its leading widget with an icon to close the drawer.
-/// The navigation items include 'Home', 'About', 'Experience', 'Work', and 'Contact'.
-/// Tapping on each item scrolls to the corresponding section and closes the drawer.
+  /// Builds and returns a Drawer widget for the navigation menu.
+  ///
+  /// The Drawer widget has a background color of 0xFF0a192f and a width of 300.
+  /// It contains a ListView with a list of ListTile widgets, each representing a navigation item.
+  /// Each ListTile has an IconButton as its leading widget with an icon to close the drawer.
+  /// The navigation items include 'Home', 'About', 'Experience', 'Work', and 'Contact'.
+  /// Tapping on each item scrolls to the corresponding section and closes the drawer.
   Drawer navigationDrawer() {
     return Drawer(
       backgroundColor: const Color(0xFF0a192f),

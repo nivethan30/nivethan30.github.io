@@ -8,6 +8,7 @@ class HomePage extends StatelessWidget {
   const HomePage({super.key, required this.onContactPressed});
 
   @override
+
   /// Builds the home page widget, which displays a brief introduction to
   /// myself, along with a button to download my CV. The text is styled
   /// using [AutoSizeText] widgets to ensure that the text is displayed
@@ -46,7 +47,6 @@ class HomePage extends StatelessWidget {
           'I am Flutter Developer Residing Tamilnadu, India specializing in building Mobile Applications.',
           maxFontSize: 16,
           minFontSize: 16,
-          maxLines: 3,
           style: TextStyle(
               color: Colors.grey,
               fontWeight: FontWeight.bold,
@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
           text: 'Download My CV ',
           onPressed: () {
             launchURL(
-                "https://drive.google.com/file/d/1HiOkvUNqYRYaQAD9CDGL1PuXw7nAy0Kv/view?usp=sharing");
+                "https://drive.google.com/file/d/1WMHEaHFfIlkX4oMxxS6VP9KCUFXfi83g/view?usp=sharing");
           },
           isBorder: true,
         )

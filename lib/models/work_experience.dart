@@ -1,7 +1,7 @@
 class WorkExperienceModel {
   final String companyName;
   final String title;
-  final String content;
+  final List<String> content;
   final String duration;
 
   WorkExperienceModel({

@@ -3,14 +3,23 @@ import '../models/work_experience.dart';
 List<WorkExperienceModel> workExperienceList = [
   WorkExperienceModel(
     companyName: "Aara Infosystems Pvt. Ltd. Chennai.",
-    title: "Flutter Developer - Intern\n",
-    content: "As a Flutter Developer Intern, I gained hands-on experience with Dart and Flutter, learning the core fundamentals of mobile app development. I developed skills in building responsive UIs, integrating APIs, and optimizing app performance. This internship enhanced my ability to create cross-platform applications efficiently.",
-    duration:"Mar 2023 - Jun 2023",
+    title: "Flutter Developer - Intern",
+    content: [
+      "Gained hands-on experience with Dart and Flutter, learning the fundamentals of mobile app development.",
+      "Developed skills in building responsive UIs, integrating APIs, and optimizing app performance.",
+      "Enhanced ability to create cross-platform applications efficiently."
+    ],
+    duration: "Jan 2023 - Mar 2023",
   ),
   WorkExperienceModel(
     companyName: "Aara Infosystems Pvt. Ltd. Chennai.",
-    title: "Flutter Developer - Full Stack\n",
-    content: "Flutter Expertise: Developed high-performance cross-platform apps with a focus on responsive UI design and smooth user experiences.\n\nNode.js Backend Developer: Designed and implemented robust APIs to support application functionality.\n\nDatabase Proficiency: Managed MySQL and MongoDB databases, ensuring efficient data handling and integration.\n\nKubernetes DevOps Beginner: Gained foundational experience in deploying applications for scalability and reliability.",
+    title: "Flutter Developer - Full Stack",
+    content: [
+      "Developed cross-platform apps using Flutter, focusing on responsive UI and smooth user experiences.",
+      "Designed and implemented REST APIs with Node.js.",
+      "Managed MySQL and MongoDB databases for efficient data handling.",
+      "Gained foundational experience in deploying applications using Kubernetes."
+    ],
     duration: "Jun 2023 - Aug 2024",
   ),
 ];

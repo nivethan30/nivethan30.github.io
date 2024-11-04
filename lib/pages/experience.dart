@@ -7,8 +7,9 @@ class ExperiencePage extends StatelessWidget {
   const ExperiencePage({super.key});
 
   @override
+
   /// Builds the UI for the ExperiencePage, displaying a list of work experiences.
-  /// 
+  ///
   /// The widget shows a header with the text "Work Experience" followed by a
   /// horizontal divider. Below the header, it displays a list of work experiences
   /// either in a desktop or mobile view, depending on the screen size. The desktop
@@ -54,21 +55,17 @@ class ExperiencePage extends StatelessWidget {
   }
 }
 
-/// Widget for displaying work experience details in a mobile view.
-/// 
-/// Displays the duration, company name, title, and content of the work experience in a styled container.
-/// The duration is shown with a work icon, company name, title, and content are displayed in a column.
-/// 
-/// Parameters:
-/// - [duration]: The duration of the work experience.
-/// - [companyName]: The name of the company.
-/// - [title]: The title of the work experience.
-/// - [content]: The content describing the work experience.
+/// A widget for displaying a single work experience in a row on a mobile device.
+///
+/// The widget displays the duration of the work experience, a work icon, the company name,
+/// title, and content of the work experience. The duration, company name, and title are
+/// displayed with font sizes of 16, 20, and 16 respectively. The content is displayed
+/// with a font size of 14 and a maximum of two lines.
 Widget mobileViewExperience(
     {required String duration,
     required String companyName,
     required String title,
-    required String content}) {
+    required List<String> content}) {
   return Container(
     padding: const EdgeInsets.all(10),
     margin: const EdgeInsets.symmetric(vertical: 15),
@@ -98,10 +95,7 @@ Widget mobileViewExperience(
               title,
               style: const TextStyle(fontSize: 16),
             ),
-            Text(
-              content,
-              style: const TextStyle(letterSpacing: 1.2),
-            )
+            for (String text in content) bulletText(text),
           ],
         ),
       ],
@@ -109,22 +103,25 @@ Widget mobileViewExperience(
   );
 }
 
-/// Builds a row widget for displaying work experience details.
-/// 
-/// The row includes the duration, company name, title, and content of the work experience.
-/// It consists of a row with a circle avatar icon representing work, followed by the company name,
-/// title, and content displayed in a column.
-/// 
-/// Parameters:
-/// - [duration]: The duration of the work experience.
-/// - [companyName]: The name of the company.
-/// - [title]: The title of the work experience.
-/// - [content]: The content describing the work experience.
+/// A widget for displaying a single work experience in a row.
+///
+/// The widget contains a `Text` widget for displaying the duration of the work
+/// experience, a `CircleAvatar` widget for displaying a work icon, and a
+/// `Column` widget containing a `Text` widget for displaying the company name
+/// and title of the work experience, and a `Text` widget for each bullet point
+/// in the content of the work experience.
+///
+/// The duration, company name, title, and content are provided as parameters
+/// when creating the widget. The company name and title are displayed with a
+/// font size of 24 and 16 respectively, and the bullet points are displayed with
+/// a font size of 14. The content is displayed with a maximum of two lines.
+///
+/// The widget is intended to be used in the [ExperiencePage] widget.
 Padding workExperienceRow(
     {required String duration,
     required String companyName,
     required String title,
-    required String content}) {
+    required List<String> content}) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 10),
     child: Row(
@@ -153,14 +150,33 @@ Padding workExperienceRow(
                 title,
                 style: const TextStyle(fontSize: 16),
               ),
-              Text(
-                content,
-                style: const TextStyle(letterSpacing: 1.2),
-              )
+              for (String text in content) bulletText(text),
             ],
           ),
         )
       ],
     ),
+  );
+}
+
+/// Builds a widget for displaying a bullet point text.
+///
+/// The widget consists of a row containing a bullet point character and the provided text.
+/// The bullet point character is displayed with a font size of 14 and letter spacing of 1.2.
+/// The text is displayed with the same letter spacing and is expanded to fill the available width.
+/// A horizontal space of 8 is added between the bullet point character and the text.
+Widget bulletText(String text) {
+  return Row(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      const Text('•', style: TextStyle(fontSize: 14, letterSpacing: 1.2)),
+      const SizedBox(width: 8),
+      Expanded(
+        child: Text(
+          text,
+          style: const TextStyle(letterSpacing: 1.2),
+        ),
+      ),
+    ],
   );
 }
