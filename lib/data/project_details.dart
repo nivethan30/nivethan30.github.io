@@ -58,6 +58,30 @@ List<ProjectModel> projects = [
       githubUrl:
           "https://github.com/nivethan30/Firebase_Authentication_Flutter"),
   ProjectModel(
+      title: 'Image Palette Color Generator ',
+      content:
+          "An Flutter Application for generating the image palette color from the image using Flutter and Dart",
+      languageUsed: ['Flutter', 'Dart', 'Flutter UI'],
+      imageUrl: "https://i.ibb.co/rd931y1/Palette.png",
+      githubUrl:
+          "https://github.com/nivethan30/Image_Color_Palette_Generator_Flutter"),
+  ProjectModel(
+      title: 'Authentication Application in Flutter With Node REST API\'s',
+      content:
+          "An Mobile Application for Authentication Methods Like Login, Signup, Forgot Password and Reset Password and fecth User Details from REST API using NodeJS and ExpressJS and used MongoDB as Database",
+      languageUsed: [
+        'Flutter',
+        'Dart',
+        'Flutter UI',
+        'NodeJS',
+        'ExpressJS',
+        'MongoDB',
+        'REST API'
+      ],
+      imageUrl: "https://i.ibb.co/3f3m5Kx/NodeAuth.png",
+      githubUrl:
+          "https://github.com/nivethan30/Authentication_Flutter_Node_Express_MongoDB"),
+  ProjectModel(
       title: "Personal Portfolio using Flutter UI",
       content:
           "A Personal Portfolio using Flutter UI with Responsive for Web and Mobile and even for windows, linux and macos",
